@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "W26-Bike-Repository",
+			"path": ".."
+		},
+		{
+			"name": "LCDDisplay2",
+			"path": "../../../../../Documents/PlatformIO/Projects/LCDDisplay2"
+		},
+		{
+			"name": "LCD3",
+			"path": "../../../../../Documents/PlatformIO/Projects/LCD3"
+		}
+	],
+	"settings": {}
+}
