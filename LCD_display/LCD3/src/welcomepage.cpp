@@ -1,6 +1,7 @@
 #include <cstring>
 #include "welcomepage.h"
 #include "welcomepageanim.h"
+#include "secretscreen.h"
 
 Arduino_DataBus *bus = new Arduino_ESP32QSPI(
   45, 47, 21, 48, 40, 39
@@ -64,7 +65,9 @@ void drawSplash() {
   const int contributorsY = 175;
   const int contributorsTextHeight = 8 * contributorsSize;
   const int borderTopY = contributorsY - 10;
-  const int borderBottomY = contributorsY + contributorsTextHeight + 3;
+  const int namesStartY = 200;
+  const int namesEndY = namesStartY + (4 * 30) + (8 * 2);  // 5 rows, last row + text height
+  const int borderBottomY = namesEndY + 10;
 
   drawSectionBorder(borderTopY, borderBottomY, C_GRAY);
 
@@ -106,6 +109,7 @@ void setup() {
   pinMode(LCD_BL, OUTPUT);
   digitalWrite(LCD_BL, HIGH);
 
+  touchSetup();
   drawSplash();
   Serial.println("Splash shown");
 
@@ -114,8 +118,10 @@ void setup() {
 }
 
 void loop() {
+  touchHandleSwitch(); 
+  
   static uint32_t last = 0;
-  if (millis() - last >= 1000) {
+    if (millis() - last >= 1000) {
     last = millis();
     Serial.printf("Uptime: %lu s\n", millis() / 1000);
   }

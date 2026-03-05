@@ -1,5 +1,6 @@
 #include "welcomepage.h"
 #include "welcomepageanim.h"
+#include "secretscreen.h"
 
 // ── Bike Drawing & Animation ──
 
@@ -34,6 +35,12 @@ void animateBikeAcrossBottom(uint32_t durationMs, uint16_t frameDelayMs) {
   const int bikeStartX = -bikeWidth - 24;
   const int bikeEndX = SCREEN_WIDTH + 24;
 
+  // insert best quote of all times 
+  const char *taglineText = "Electrium Mobility's Greatest Bike";
+  const int taglineSize = 1;
+  const int taglineWidth = textWidth(taglineText, taglineSize);
+  const int taglineY = bikeY - 30;
+
   const uint32_t startTime = millis();
 
   while (true) {
@@ -45,6 +52,12 @@ void animateBikeAcrossBottom(uint32_t durationMs, uint16_t frameDelayMs) {
     int bikeX = bikeStartX + static_cast<int>((static_cast<int64_t>(bikeEndX - bikeStartX) * elapsed) / durationMs);
 
     gfx->fillRect(2, laneTop, SCREEN_WIDTH - 4, laneHeight, C_BLACK);
+    
+    gfx->setTextColor(C_YELLOW);
+    gfx->setTextSize(taglineSize);
+    gfx->setCursor((SCREEN_WIDTH - taglineWidth) / 2, taglineY);
+    gfx->print(taglineText);
+    
     drawBike(bikeX, bikeY, C_GREEN, bikeScale);
 
     gfx->flush();

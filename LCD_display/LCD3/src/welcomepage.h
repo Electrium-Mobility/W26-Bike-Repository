@@ -16,15 +16,15 @@
 #define C_GRAY    0x8410
 #define C_YELLOW  0xFFE0
 
-// ── Global Graphics Object ──
-extern Arduino_Canvas *gfx;
+// ── Global Graphics Objects (defined in main.cpp) ──
+extern Arduino_DataBus  *bus;
+extern Arduino_GFX      *panel;
+extern Arduino_Canvas   *gfx;
 
 // ── Utility Functions ──
 int textWidth(const char *text, int textSize);
 
 // ── Main Functions ──
 void drawSplash();
-void setup();
-void loop();
 
 #endif
