@@ -15,6 +15,7 @@
 #define C_GREEN   0x07E0
 #define C_GRAY    0x8410
 #define C_YELLOW  0xFFE0
+#define C_RED     0xF800
 
 // ── Global Graphics Objects (defined in main.cpp) ──
 extern Arduino_DataBus  *bus;

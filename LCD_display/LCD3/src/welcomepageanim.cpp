@@ -26,7 +26,7 @@ void drawBike(int x, int y, uint16_t color, int scale) {
   gfx->drawLine(handleX, handleY, handleX + (4 * scale), handleY - (3 * scale), color);
 }
 
-void animateBikeAcrossBottom(uint32_t durationMs, uint16_t frameDelayMs) {
+bool animateBikeAcrossBottom(uint32_t durationMs, uint16_t frameDelayMs) {
   const int bikeScale = 2;
   const int bikeWidth = 30 * bikeScale;
   const int bikeY = SCREEN_HEIGHT - 82;
@@ -49,11 +49,11 @@ void animateBikeAcrossBottom(uint32_t durationMs, uint16_t frameDelayMs) {
       break;
     }
 
-    if (touchEarlyExit()) {
-  gfx->fillRect(2, laneTop, SCREEN_WIDTH - 4, laneHeight, C_BLACK);
+  if (touchEarlyExit()) {
+  gfx->fillScreen(C_BLACK);
   gfx->flush();
   drawSecretScreen();
-  return;
+  return true;  // was interrupted
 }
     int bikeX = bikeStartX + static_cast<int>((static_cast<int64_t>(bikeEndX - bikeStartX) * elapsed) / durationMs);
 
@@ -72,6 +72,7 @@ void animateBikeAcrossBottom(uint32_t durationMs, uint16_t frameDelayMs) {
 
   gfx->fillRect(2, laneTop, SCREEN_WIDTH - 4, laneHeight, C_BLACK);
   gfx->flush();
+  return false;  // completed normally
 }
 
 void animateBikeToW26FromRight(const char *modelText, int modelTextY, uint32_t durationMs, uint16_t frameDelayMs) {

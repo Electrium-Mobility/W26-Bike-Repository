@@ -98,8 +98,7 @@ void drawSplash() {
   }
 
   gfx->flush();
-  animateBikeAcrossBottom();
-if (digitalRead(TOUCH_IRQ) == HIGH) {
+  if (!animateBikeAcrossBottom()) {
   animateBikeToW26FromRight(modelText, modelTextY, 2200, 25);
 }
 }
