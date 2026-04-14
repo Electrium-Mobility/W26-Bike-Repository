@@ -4,10 +4,6 @@
 #include "secretscreen.h"
 #include "stats.h"
 
-static const uint32_t WELCOME_DURATION_MS = 10000;
-enum AppScreen { APP_WELCOME, APP_STATS };
-static AppScreen appScreen = APP_WELCOME;
-static uint32_t appStartMs = 0;
 
 Arduino_DataBus *bus = new Arduino_ESP32QSPI(
   45, 47, 21, 48, 40, 39
